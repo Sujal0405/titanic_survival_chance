@@ -46,7 +46,8 @@ if st.button("Predict Survival"):
     
     prob = model.predict(user)
     probability = prob[0][0]
-    
+
+    time.sleep(5)
     results.empty()
     st.write(f"Probability of survival: {probability*100:.2f}%")
 
