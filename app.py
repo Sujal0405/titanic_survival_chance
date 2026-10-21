@@ -3,6 +3,7 @@ import pandas as pd
 import pandas as pd
 import joblib
 from tensorflow.keras.models import load_model
+import time
 
 st.title("Titanic Survival Prediction")
 
