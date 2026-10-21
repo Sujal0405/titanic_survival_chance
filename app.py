@@ -40,10 +40,13 @@ if st.button("Predict Survival"):
     user[['Fare', 'SibSp', 'Parch', 'Pclass']] = ss.transform(user[['Fare', 'SibSp', 'Parch', 'Pclass']])
 
     st.write("All Values transformed as per ANN model .. ")
+    prob = model.predict(user)
+    probability = prob[0][0]
+    st.write(prob[0][0])
+    st.write(f"Probability of survival: {probability*100:.2f}%")
     
     if st.button("Predict"):
-        prob = model.predict(user)
-        st.write(prob)
-        st.write(f"Probability of survival: {prob[0][0]*100:.2f}%")
+        st.write("Probability predicted .. ")
+        st.write(f"Probability of survival: {probability*100:.2f}%")
 
       
