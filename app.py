@@ -1,5 +1,8 @@
 import streamlit as st
 import pandas as pd
+import pandas as pd
+import joblib
+from tensorflow.keras.models import load_model
 
 st.title("Titanic Survival Prediction")
 
@@ -24,10 +27,7 @@ if st.button("Predict Survival"):
 
     st.write("Processing your input and predicting survival probability...")
     st.write("Please wait while we load the model and preprocess your input...")
-    import pandas as pd
-    import joblib
-    from tensorflow.keras.models import load_model
-
+    
     le = joblib.load('le.pkl')
     ohe = joblib.load('ohe.pkl')
     ss = joblib.load('ss.pkl')
@@ -39,7 +39,8 @@ if st.button("Predict Survival"):
     user = pd.concat([user.drop(columns='Embarked'), embarked_df], axis=1)
     user[['Fare', 'SibSp', 'Parch', 'Pclass']] = ss.transform(user[['Fare', 'SibSp', 'Parch', 'Pclass']])
 
-
+    st.write("All Values transformed as per ANN model .. ")
+    
     if st.button("Predict"):
         prob = model.predict(user)
         st.write(prob)
