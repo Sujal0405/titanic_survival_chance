@@ -28,10 +28,10 @@ if st.button("Predict Survival"):
     import joblib
     from tensorflow.keras.models import load_model
 
-    le = joblib.load('ANN/models/le.pkl')
-    ohe = joblib.load('ANN/models/ohe.pkl')
-    ss = joblib.load('ANN/models/ss.pkl')
-    model = load_model('ANN/models/model.h5')
+    le = joblib.load('le.pkl')
+    ohe = joblib.load('ohe.pkl')
+    ss = joblib.load('ss.pkl')
+    model = load_model('model.h5')
 
     user['Sex'] = le.transform(user['Sex'])
     embarked_encoded = ohe.transform(user[['Embarked']])
