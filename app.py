@@ -22,11 +22,12 @@ user = pd.DataFrame([{
     "Embarked": embarked
 }])
 
-st.write(user)
+results = st.empty()
 
 if st.button("Predict Survival"):
     
     with results.container():
+        st.write(user)
         st.write("Reported Data sent to model for prediction .. ")
         st.write("Processing data... Kindly wait for the prediction .. ")
     
