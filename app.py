@@ -22,11 +22,13 @@ user = pd.DataFrame([{
     "Embarked": embarked
 }])
 
-if st.button("Predict Survival"):
-    st.write(user)
+st.write(user)
 
-    st.write("Processing your input and predicting survival probability...")
-    st.write("Please wait while we load the model and preprocess your input...")
+if st.button("Predict Survival"):
+    
+    with results.container():
+        st.write("Reported Data sent to model for prediction .. ")
+        st.write("Processing data... Kindly wait for the prediction .. ")
     
     le = joblib.load('le.pkl')
     ohe = joblib.load('ohe.pkl')
@@ -39,14 +41,13 @@ if st.button("Predict Survival"):
     user = pd.concat([user.drop(columns='Embarked'), embarked_df], axis=1)
     user[['Fare', 'SibSp', 'Parch', 'Pclass']] = ss.transform(user[['Fare', 'SibSp', 'Parch', 'Pclass']])
 
-    st.write("All Values transformed as per ANN model .. ")
+
+    
     prob = model.predict(user)
     probability = prob[0][0]
-    st.write(prob[0][0])
-    st.write(f"Probability of survival: {probability*100:.2f}%")
     
-    if st.button("Predict"):
-        st.write("Probability predicted .. ")
-        st.write(f"Probability of survival: {probability*100:.2f}%")
+    results.empty()
+    st.write(f"Probability of survival: {probability*100:.2f}%")
+
 
       
